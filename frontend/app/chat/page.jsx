@@ -1,9 +1,12 @@
 "use client"
 import Form from "@/components/form"
-import { useState, useRef } from "react"
+import VideoPlayer from "@/components/videoPlayer"
+import { useState, useRef, useEffect } from "react"
 export default function Page() {
-  const [participants, setParticipants] = useState()
+  const [participants, setParticipants] = useState([])
   const partDiv = useRef()
+  useEffect(() => {
+  }, [participants])
   return (
     <>
       <Form participants={participants} setParticipants={setParticipants} partDiv={partDiv}></Form>
@@ -11,7 +14,11 @@ export default function Page() {
         participants.map((participant) => {
           return (
             <>
-              <div ref={partDiv} key={participant.identity}></div>
+              <div key={participant.identity}>
+                {participant.videoTracks ?
+                  <VideoPlayer track={participant.videoTracks}></VideoPlayer>
+                  : ""}
+              </div>
             </>
           )
         }) : ""}

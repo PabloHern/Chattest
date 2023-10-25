@@ -1,7 +1,7 @@
 "use client"
 import { useForm } from "react-hook-form";
 import useConnect from "@/hooks/useConnect";
-export default function Form(participants, setParticipants, partDiv) {
+export default function Form({ participants, setParticipants, partDiv }) {
   const { megaConnect } = useConnect()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const joinVideoRoom = async (roomName, token) => {
@@ -26,14 +26,15 @@ export default function Form(participants, setParticipants, partDiv) {
     trackPublication.on("subscribed", displayTrack);
   };
   const handleConnectedParticipant = (participant) => {
+    console.log(participant.videoTracks.values().next().value)
     setParticipants((prev) => [...prev, participant])
-    participant.tracks.forEach((trackPublication) => {
-      console.log("trackPublication: ", trackPublication);
-      handleTrackPublication(trackPublication, participant);
-    });
+    // participant.tracks.forEach((trackPublication) => {
+    //   console.log("trackPublication: ", trackPublication);
+    //   handleTrackPublication(trackPublication, participant);
+    // });
 
-    // listen for any new track publications
-    participant.on("trackPublished", handleTrackPublication);
+    // // listen for any new track publications
+    // participant.on("trackPublished", handleTrackPublication);
   };
   const handleDisconnectedParticipant = (participant) => {
     // stop listening for this participant
