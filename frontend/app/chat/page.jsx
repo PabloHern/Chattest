@@ -15,8 +15,8 @@ export default function Page() {
           return (
             <>
               <div key={participant.identity}>
-                {participant.videoTracks ?
-                  <VideoPlayer track={participant.videoTracks}></VideoPlayer>
+                {participant.tracks ?
+                  <VideoPlayer participant={participant} publications={Array.from(participant.tracks.values())}></VideoPlayer>
                   : ""}
               </div>
             </>

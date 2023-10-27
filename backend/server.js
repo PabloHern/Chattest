@@ -22,9 +22,12 @@ const findOrCreateRoom = async (roomName) => {
   try {
     // see if the room exists already. If it doesn't, this will throw
     // error 20404.
-    await twilioClient.video.v1.rooms(roomName).fetch();
+    console.log(roomName)
+    test = await twilioClient.video.v1.rooms(roomName).fetch();
+    console.log(test)
   } catch (error) {
     // the room was not found, so create it
+    console.log(error)
     if (error.code == 20404) {
       await twilioClient.video.v1.rooms.create({
         uniqueName: roomName,
