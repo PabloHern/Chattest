@@ -11,10 +11,10 @@ export default function Page() {
     <>
       <Form participants={participants} setParticipants={setParticipants} partDiv={partDiv}></Form>
       {participants ?
-        participants.map((participant) => {
+        participants.map((participant, index) => {
           return (
             <>
-              <div key={participant.identity}>
+              <div key={index}>
                 {participant.tracks ?
                   <VideoPlayer participant={participant} publications={Array.from(participant.tracks.values())}></VideoPlayer>
                   : ""}

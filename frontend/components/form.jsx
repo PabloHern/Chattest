@@ -36,8 +36,8 @@ export default function Form({ participants, setParticipants, partDiv }) {
     const { token } = await response.json();
     console.log(token);
     const room = await megaConnect(roomName, token);
-    console.log(room.participants);
     handleConnectedParticipant(room.localParticipant);
+    console.log(room.participants);
     room.participants.forEach(handleConnectedParticipant);
     room.on("participantConnected", handleConnectedParticipant);
     // handle cleanup when a participant disconnects
