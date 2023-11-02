@@ -20,5 +20,5 @@
 
 body {
   color: rgb(var(--text));
-  background: rgb(var(--background))
+  background: rgb(var(--background));
 }

@@ -11,17 +11,19 @@ export default function Page() {
     <>
       <Form participants={participants} setParticipants={setParticipants} partDiv={partDiv}></Form>
       {participants ?
-        participants.map((participant, index) => {
-          return (
-            <>
-              <div key={index}>
-                {participant.tracks ?
-                  <VideoPlayer participant={participant} publications={Array.from(participant.tracks.values())}></VideoPlayer>
-                  : ""}
-              </div>
-            </>
-          )
-        }) : ""}
+        <div className="p-4 pt-0  justify-center flex flex-col md:flex-row ">
+          {participants.map((participant, index) => {
+            return (
+              <>
+                <div key={index} className="p-2 flex " >
+                  {participant.tracks ?
+                    <VideoPlayer participant={participant} publications={Array.from(participant.tracks.values())}></VideoPlayer>
+                    : ""}
+                </div>
+              </>
+            )
+          })}
+        </div> : ""}
     </>
   )
 }

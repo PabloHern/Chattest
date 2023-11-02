@@ -5,11 +5,11 @@ export default function VideoPlayer({ publications, participant }) {
   const [track, setTrack] = useState(publication && publication.track);
   const [tracks, setTracks] = useState([]);
 
-  useEffect(() => {
-    const condition = (publication) => publication.kind === 'video';
-    const auxPublication = publications.find(condition);
-    setPublication(auxPublication);
-  }, [publications]);
+  // useEffect(() => {
+  //   const condition = (publication) => publication.kind === 'video';
+  //   const auxPublication = publications.find(condition);
+  //   setPublication(auxPublication);
+  // }, [publications]);
 
   useEffect(() => {
     // Reset the track when the 'publication' variable changes.
@@ -28,43 +28,40 @@ export default function VideoPlayer({ publications, participant }) {
   }, [publication]);
 
   useEffect(() => {
-    if (track) {
-      const el = ref.current;
-      el.muted = true;
+    const el = ref.current;
+    tracks.forEach((track) => {
       track.attach(el);
-
+      console.log(track)
       return () => {
         track.detach(el);
-
-        // This addresses a Chrome issue where the number of WebMediaPlayers is limited.
-        // See: https://github.com/twilio/twilio-video.js/issues/1528
         el.srcObject = null;
       };
+    }); {
     }
-  }, [track]);
-  // useEffect(() => {
-  //   const subscribedTracks = Array.from(participant.tracks.values())
-  //     .filter(trackPublication => trackPublication.track !== null)
-  //     .map(trackPublication => trackPublication.track);
+  }, [tracks]);
+  useEffect(() => {
+    const subscribedTracks = Array.from(participant.tracks.values())
+      .filter(trackPublication => trackPublication.track !== null)
+      .map(trackPublication => trackPublication.track);
 
-  //   setTracks(subscribedTracks);
+    setTracks(subscribedTracks);
 
-  //   const handleTrackSubscribed = (track) => setTracks(prevTracks => [...prevTracks, track]);
-  //   const handleTrackUnsubscribed = (track) =>
-  //     setTracks(prevTracks => prevTracks.filter(t => t !== track));
+    const handleTrackSubscribed = (track) => setTracks(prevTracks => [...prevTracks, track]);
+    const handleTrackUnsubscribed = (track) =>
+      setTracks(prevTracks => prevTracks.filter(t => t !== track));
 
-  //   participant.on('trackSubscribed', handleTrackSubscribed);
-  //   participant.on('trackUnsubscribed', handleTrackUnsubscribed);
-  //   return () => {
-  //     participant.off('trackSubscribed', handleTrackSubscribed);
-  //     participant.off('trackUnsubscribed', handleTrackUnsubscribed);
-  //   };
-  // }, [participant]);
+    participant.on('trackSubscribed', handleTrackSubscribed);
+    participant.on('trackUnsubscribed', handleTrackUnsubscribed);
+    return () => {
+      participant.off('trackSubscribed', handleTrackSubscribed);
+      participant.off('trackUnsubscribed', handleTrackUnsubscribed);
+    };
+  }, [participant]);
 
 
   return (
     <>
-      <video ref={ref} className="w-full h-full bg-black">
+      <video ref={ref} className=" h-full flex border">
 
       </video>
     </>

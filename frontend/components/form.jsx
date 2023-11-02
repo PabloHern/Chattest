@@ -48,7 +48,7 @@ export default function Form({ participants, setParticipants, partDiv }) {
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <form className="p-24 flex gap-8  items-center text-center" onSubmit={handleSubmit(onSubmit)}>
+    <form className="p-16 pt-20 flex gap-8 justify-center items-center text-align-center" onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
       <label>Room </label>
       <input defaultValue="test" {...register("example")} />
