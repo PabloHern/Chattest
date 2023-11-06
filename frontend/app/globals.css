@@ -1,24 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --text: 11 7 5;
-  --background: 241 230 223;
-  --primary: 206 166 141;
-  --secondary: 227 205 191;
-  --accent: 150 97 64;
-}
-
-.dark {
-  --text: 250 246 244;
-  --background: 32 21 14;
-  --primary: 114 74 49;
-  --secondary: 64 42 28;
-  --accent: 191 138 105;
-}
-
-body {
-  color: rgb(var(--text));
-  background: rgb(var(--background));
-}
