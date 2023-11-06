@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 const AccessToken = require("twilio").jwt.AccessToken;
 const VideoGrant = AccessToken.VideoGrant;
 const express = require("express");
-var cors = require('cors');
+var cors = require("cors");
 const app = express();
 app.use(cors());
 const port = 5000;
@@ -22,12 +22,9 @@ const findOrCreateRoom = async (roomName) => {
   try {
     // see if the room exists already. If it doesn't, this will throw
     // error 20404.
-    console.log(roomName)
     test = await twilioClient.video.v1.rooms(roomName).fetch();
-    console.log(test)
   } catch (error) {
     // the room was not found, so create it
-    console.log(error)
     if (error.code == 20404) {
       await twilioClient.video.v1.rooms.create({
         uniqueName: roomName,
@@ -73,6 +70,5 @@ app.post("/join-room", async (req, res) => {
   });
 });
 // Start the Express server
-app.listen(port, () => {
-  console.log(`Express server running on port ${port}`);
-});
+app.listen(port);
+module.exports = app;
