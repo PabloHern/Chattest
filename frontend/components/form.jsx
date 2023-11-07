@@ -31,7 +31,7 @@ export default function Form({ participants, setParticipants, partDiv }) {
     const roomName = data.example;
 
     // fetch an Access Token from the join-room route
-    const response = await fetch("https://chattest-back.vercel.app/join-room", {
+    const response = await fetch("http://localhost:5000/join-room", {
       method: "POST",
       headers: {
         Accept: "application/json",
