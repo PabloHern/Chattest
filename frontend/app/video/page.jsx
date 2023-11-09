@@ -1,6 +1,6 @@
 "use client";
-import Form from "@/components/form";
-import VideoPlayer from "@/components/videoPlayer";
+import Form from "@/components/Form";
+import VideoPlayer from "@/components/VideoPlayer";
 import { useState, useRef, useEffect } from "react";
 export default function Page() {
   const [participants, setParticipants] = useState([]);

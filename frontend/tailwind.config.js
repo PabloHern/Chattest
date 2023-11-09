@@ -6,16 +6,19 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    colors: {
-      text: "#0a0001",
-      background: "#ffffff",
-      primary: "#14ada3",
-      secondary: "#bbbff7",
-      accent: "#18cdc1",
-    },
     extend: {
+      colors: {
+        text: "#0a0001",
+        background: "#ffffff",
+        primary: "#14ada3",
+        secondary: "#bbbff7",
+        accent: "#18cdc1",
+      },
       backgroundImage: {
         background: "#f1e6df",
+      },
+      height: {
+        chatbox: "90%",
       },
     },
   },
